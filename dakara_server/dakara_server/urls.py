@@ -20,6 +20,8 @@ from django.contrib.staticfiles.views import serve
 from django.urls import include, path
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.documentation import include_docs_urls
+from dj_rest_auth.registration.views import VerifyEmailView
+from allauth.account.views import confirm_email
 
 from library import views as library_views
 from playlist import views as playlist_views
@@ -33,6 +35,9 @@ urlpatterns = [
     # Authentication routes
     path("api/auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("api/token-auth/", obtain_auth_token),
+    path('dj-rest-auth/', include('dj_rest_auth.urls')),
+    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('dj-rest-auth/account-confirm-email/', confirm_email, name='account_email_verification_sent'),
     # API routes for internal
     path("api/version/", internal_views.VersionView.as_view(), name="version"),
     # API routes for the users

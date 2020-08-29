@@ -1,7 +1,20 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model, update_session_auth_hash
+from dj_rest_auth.serializers import LoginSerializer
 
 UserModel = get_user_model()
+
+
+class DakaraLoginSerializer(LoginSerializer):
+    def validate(self, attrs):
+        super().validate(attrs)
+
+        # check if the user is enabled
+        user = attrs["user"]
+        if user.username == 'flore2':
+            raise serializers.ValidationError("This account has not been enabled")
+
+        return attrs
 
 
 class UserForPublicSerializer(serializers.ModelSerializer):

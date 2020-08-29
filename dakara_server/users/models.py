@@ -43,7 +43,7 @@ class DakaraUser(AbstractUser):
     """Custom user
     """
 
-    objects = DakaraUserManager()
+#    objects = DakaraUserManager()
 
     # permission levels per application
     USER = "u"

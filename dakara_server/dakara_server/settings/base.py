@@ -27,10 +27,16 @@ INSTALLED_APPS = (
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "rest_framework",
-    "rest_framework.authtoken",
+    'django.contrib.sites',
     "channels",
     "ordered_model",
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    "rest_framework",
+    "rest_framework.authtoken",
+    "dj_rest_auth",
+    'dj_rest_auth.registration',
     "library",
     "playlist.apps.PlaylistConfig",
     "users",
@@ -113,3 +119,26 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
 }
+
+# Needed for dj-rest-auth
+SITE_ID = 1
+
+REST_AUTH_SERIALIZERS = {
+    "LOGIN_SERIALIZER": "users.serializers.DakaraLoginSerializer"
+}
+
+# All-auth config
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# Mail config
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
