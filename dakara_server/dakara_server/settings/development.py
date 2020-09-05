@@ -103,3 +103,6 @@ LOGGING = {
 
 # limit of the playlist size
 PLAYLIST_SIZE_LIMIT = config("PLAYLIST_SIZE_LIMIT", cast=int, default=100)
+
+# Mail config
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

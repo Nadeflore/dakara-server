@@ -9,10 +9,10 @@ class DakaraLoginSerializer(LoginSerializer):
     def validate(self, attrs):
         super().validate(attrs)
 
-        # check if the user is enabled
-        user = attrs["user"]
-        if user.username == 'flore2':
-            raise serializers.ValidationError("This account has not been enabled")
+        # # check if the user is enabled
+        # user = attrs["user"]
+        # if user.username == 'flore2':
+        #     raise serializers.ValidationError("This account has not been enabled")
 
         return attrs
 
